@@ -1,0 +1,245 @@
+﻿@charset "utf-8";
+
+/**************************************************************************************************
+		
+	test style
+	
+	written by stefan krueger (s-light),
+		mail@s-light.eu, http://s-light.eu, https://github.com/s-light/
+	
+	
+	changelog / history
+		31.07.2014 09:32 created
+	
+	TO DO:
+		~ implement things. :-)
+		
+**************************************************************************************************/
+/**************************************************************************************************
+	license
+	
+	CC BY SA
+		This work is licensed under the
+		Creative Commons Attribution-ShareAlike 3.0 Unported License.
+		To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+		
+	Apache License Version 2.0
+		Copyright 2014 stefan krueger
+		
+		Licensed under the Apache License, Version 2.0 (the "License");
+		you may not use this file except in compliance with the License.
+		You may obtain a copy of the License at
+		
+		http://www.apache.org/licenses/LICENSE-2.0
+		
+		Unless required by applicable law or agreed to in writing, software
+		distributed under the License is distributed on an "AS IS" BASIS,
+		WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+		See the License for the specific language governing permissions and
+		limitations under the License.
+		
+	The MIT License (MIT)
+		Copyright (c) 2014 stefan krueger
+		Permission is hereby granted, free of charge, to any person obtaining a copy
+		of this software and associated documentation files (the "Software"),
+		to deal in the Software without restriction, including without limitation
+		the rights to use, copy, modify, merge, publish, distribute, sublicense,
+		and/or sell copies of the Software, and to permit persons to whom the Software
+		is furnished to do so, subject to the following conditions:
+		The above copyright notice and this permission notice shall be included in all
+		copies or substantial portions of the Software.
+		THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+		INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+		PARTICULAR PURPOSE AND NONINFRINGEMENT.
+		IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
+		OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+		http://opensource.org/licenses/mit-license.php
+	
+**************************************************************************************************/
+
+/*********************************************************/
+/**  Import Fonts                                       **/
+/**  from base local directory                          **/
+/*********************************************************/
+
+@import url("../font/overlock-fontfacekit/stylesheet.css");
+/*	contains fonts:
+		OverlockRegular
+		OverlockItalic
+		OverlockBold
+		OverlockBoldItalic
+		OverlockBlack
+		OverlockBlackItalic
+		OverlockSCRegular
+*/
+
+/*********************************************************/
+/**  Main Document styling                              **/
+/*********************************************************/
+html , body {
+	position:			fixed;
+	top:				0;
+	right:				0;
+	bottom:				0;
+	left:				0;
+	
+	width:				100%;
+	height:				100%;
+	
+	margin:				0;
+	padding:			0;
+}
+
+body{
+	overflow:			visible;
+	
+	background-color:	rgb(160, 230, 255);
+	/*color:			rgb(255, 200, 000);*/
+	color:				rgb(0, 0, 0);
+	
+	font-size:			1em;
+	line-height:		100%;
+	font-family:		OverlockRegular, Verdana;
+	text-align:			left;
+	/*text-shadow:			0 0 2px rgb(000, 000, 000), 0 0 3px rgb(000, 000, 000), 0 0 6px rgb(000, 000, 000);*/
+	
+	background-image:		none; /*url(../img/2009_04_20__Blumenwiese_IMGP2365.jpg);*/
+	background-repeat:		no-repeat;
+	background-position:	center center;
+	background-attachment:	fixed;
+	background-size:		auto;
+}
+
+a, a:link {
+	margin:				0;
+	padding:			0;
+	text-decoration:	none;
+	color:				inherit;
+	cursor:				pointer;
+	display:			inline;
+}
+
+a:hover {
+	background-color:	rgba(255,190,000,0.5);
+	box-shadow:			0px 0px 5px rgba(255,190,0,0.5), 0px 0px 20px rgba(255,190,0,0.5);
+}
+
+
+
+/*********************************************************/
+/**  controls                                           **/
+/*********************************************************/
+
+#controls  {
+	position:			fixed;
+	top:				0;
+	right:				0;
+	bottom:				auto;
+	left:				auto;
+	
+	margin:				1em;
+	padding:			0.5em;
+	/*background-color:	rgba(255,190,000,0.5);*/
+	
+}
+
+#level, #posX, #posY {
+	color:				rgb(255,255,0);
+	text-align:			right;
+}
+
+.button {
+	margin:				1em;
+	padding:			0.5em;
+	
+	width:				1em;
+	height:				1em;
+	
+	background-color:	rgba(255,190,0,0.5);
+	box-shadow:			-1px -1px 5px rgba(255,190,0,0.5), -1px -1px 15px rgba(255,190,0,0.5);
+	
+	border-radius:		0.5em;
+	
+	cursor:				pointer;
+	font-size:			2em;
+	line-height:		1em;
+	font-weight:		bold;
+	text-align:			center;
+}
+
+.button:hover {
+	box-shadow:			-1px -1px 5px rgba(255,190,0,0.5), -1px -1px 15px rgba(255,190,0,0.5), -1px -1px 2px rgba(255,190,0,0.5);
+}
+
+.button:active {
+	box-shadow:			0px 0px 5px rgba(255,190,0,0.5), 0px 0px 15px rgba(255,190,0,0.5), 0px 0px 2px rgba(255,190,0,1);
+}
+
+/*********************************************************/
+/**  graphic                                            **/
+/*********************************************************/
+#graphic {
+	position:			fixed;
+	top:				0;
+	right:				0;
+	bottom:				0;
+	left:				0;
+	
+	margin:				0;
+	padding:			0;
+	
+	width:				100%;
+	height:				100%;
+	
+	overflow:			visible;
+}
+
+/*********************************************************/
+/**  svg                                                **/
+/*********************************************************/
+
+svg {
+	position:			fixed;
+	top:				0;
+	right:				0;
+	bottom:				0;
+	left:				0;
+	
+	width:				100%;
+	height:				100%;
+	
+	margin:				0;
+	padding:			0;
+	
+	border:				none;
+	box-shadow:			0px 0px 1px rgba(255, 190, 0, 0.5) inset;
+}
+
+/*SVG*/
+.svgBaseStyle {
+	opacity:			1;
+	fill:				rgb(0,0,0);
+	fill-opacity:		0.5;
+	stroke:				rgb(0,0,0);
+	stroke-width:		0.1mm;
+	stroke-linecap:		round;
+	stroke-linejoin:	round;
+	stroke-miterlimit:	4;
+	stroke-opacity:		1;
+	stroke-dasharray:	none;
+	stroke-dashoffset:	0;
+}
+
+/*********************************************************/
+/**  info                                               **/
+/*********************************************************/
+
+.appinfo {
+	clear:				both;
+	margin-top:			5em;
+}
+
+
+/*********************************************************/
+/**  end                                                **/
