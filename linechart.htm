@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>gRaphaël Line Charts</title>
+        <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" charset="utf-8">
+        
+		<script src="js/raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/g.raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/g.line.js" type="text/javascript" charset="utf-8"></script>
+		
+        <script type="text/javascript" charset="utf-8">
+			
+			/* *************************************************************************************************
+					
+				test js
+				
+				written by stefan krueger (s-light),
+					mail@s-light.eu, http://s-light.eu, https://github.com/s-light/
+				
+				
+				changelog / history
+					31.07.2014 09:32 created
+				
+				TO DO:
+					~ implement things. :-)
+					
+			************************************************************************************************* */
+			/* *************************************************************************************************
+				license
+				
+				CC BY SA
+					This work is licensed under the
+					Creative Commons Attribution-ShareAlike 3.0 Unported License.
+					To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+					
+				Apache License Version 2.0
+					Copyright 2014 stefan krueger
+					
+					Licensed under the Apache License, Version 2.0 (the "License");
+					you may not use this file except in compliance with the License.
+					You may obtain a copy of the License at
+					
+					http://www.apache.org/licenses/LICENSE-2.0
+					
+					Unless required by applicable law or agreed to in writing, software
+					distributed under the License is distributed on an "AS IS" BASIS,
+					WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+					See the License for the specific language governing permissions and
+					limitations under the License.
+					
+				The MIT License (MIT)
+					Copyright (c) 2014 stefan krueger
+					Permission is hereby granted, free of charge, to any person obtaining a copy
+					of this software and associated documentation files (the "Software"),
+					to deal in the Software without restriction, including without limitation
+					the rights to use, copy, modify, merge, publish, distribute, sublicense,
+					and/or sell copies of the Software, and to permit persons to whom the Software
+					is furnished to do so, subject to the following conditions:
+					The above copyright notice and this permission notice shall be included in all
+					copies or substantial portions of the Software.
+					THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+					INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+					PARTICULAR PURPOSE AND NONINFRINGEMENT.
+					IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
+					OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+					OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+					http://opensource.org/licenses/mit-license.php
+				
+			************************************************************************************************* */
+			
+			// global Raphael Paper Object
+			var myPaper;
+			
+			function initGraph(paper) {
+                var r = paper;
+				
+				var margin = 0.1;
+				var graph_y_margin = (paper.height*margin)/2;
+				var graph_height = paper.height - graph_y_margin;
+				
+				
+				var graph_x_margin = ((paper.width/2)*margin)/2;
+				var graph_width = (paper.width) - graph_x_margin;
+				
+				
+				console.log("graph_height", graph_height);
+				console.log("graph_x_margin", graph_x_margin);
+				console.log("graph_width", graph_width);
+				console.log("graph_y_margin", graph_y_margin);
+				
+				
+				var txtattr = { font: "1em 'OverlockRegular', sans-serif", "text-aline": "left"};
+                
+                var x = [];
+				var y = [];
+				var y2 = [];
+				var y3 = [];
+
+                for (var i = 0; i < 1e2; i++) {
+                    x[i] = i * 10;
+                    y[i] = (y[i - 1] || 0) + (Math.random() * 11) - 3;
+                    y2[i] = (y2[i - 1] || 110) + (Math.random() * 7) - 1;
+                    y3[i] = (Math.random() * 210);
+                }
+				
+				/*
+				console.log(x);
+				console.log(y);
+				console.log(y2);
+				console.log(y3);
+				*/
+				
+				r.text(paper.width/2, graph_y_margin, "shade = true (1000 points); Symbols, axis and hover effect").attr(txtattr);
+				
+				// left
+				r.linechart(
+					graph_x_margin/2, 
+					graph_y_margin/2, 
+					graph_width, 
+					graph_height,
+					x, 
+					[y.slice(0, 1e2), y2.slice(0, 1e2), y3.slice(0, 1e2)],
+					{ shade: true });
+				
+				// right
+				/* */
+				var lines = r.linechart(
+					graph_x_margin/2, 
+					graph_y_margin/2, 
+					graph_width, 
+					graph_height,
+					//[y.slice(0, 1e1)],
+					//[y2.slice(0, 1e1)],
+					//x,
+					[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+					[[12, 32, 23, 15, 17, 27, 22, 2, 33, 0], [10, 20, 30, 25, 15, 88]],
+					// [[55, 10, 11, 12, 13, 27, 42, 22], [0, 10, 20, 30, 40, 50, 60, 70]],
+					//[y.slice(0, 1e1), y2.slice(0, 1e1), y3.slice(0, 1e1)],
+					{ shade: true, nostroke: false, axis: "0 1 1 1", symbol: "circle", smooth: true }
+				).hoverColumn(function () {
+					this.tags = r.set();
+					
+					for (var i = 0, ii = this.y.length; i < ii; i++) {
+						this.tags.push(
+							r.tag(this.x, this.y[i], this.values[i], 160, 10)
+							.insertBefore(this)
+							.attr(
+								[{ fill: "#fff" }, { fill: this.symbols[i].attr("fill") }]
+							)
+						);
+					}
+				},
+				function () {
+					this.tags && this.tags.remove();
+				});
+
+                lines.symbols.attr({ r: 6 });
+                // lines.lines[0].animate({"stroke-width": 6}, 1000);
+                // lines.symbols[0].attr({stroke: "#fff"});
+                // lines.symbols[0][1].animate({fill: "#f00"}, 1000);
+				/* */
+            };
+			
+			
+			
+			
+			
+			function initSystem() {
+				// init paper
+				myPaper = Raphael("graphic", window.innerWidth, window.innerHeight);
+				
+				initGraph(myPaper)
+				
+				//mark center
+				myPaper.circle((myPaper.width/2), (myPaper.height/2), 1).attr({fill: "#f0F", stroke: "none"});
+				myPaper.circle((myPaper.width/2), (myPaper.height/2), 20).attr({fill: "none", stroke: "#f0F"});
+				myPaper.rect(0, 0, myPaper.width, myPaper.height).attr({fill: "none", stroke: "#f0F"});
+				
+				
+            };
+			
+			document.addEventListener('DOMContentLoaded', initSystem, false);
+			
+			
+        </script>
+	
+    </head>
+    <body class="raphael" id="g.raphael.dmitry.baranovskiy.com">
+        <div id="graphic"></div>
+        <div id="info">
+            Test of <a href="http://g.raphaeljs.com/">gRaphaël</a> JavaScript library.
+        </div>
+    </body>
+</html>
